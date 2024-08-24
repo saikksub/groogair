@@ -12,6 +12,8 @@ next: false
     src="/me.png" 
     alt="Banner image representing Kiran Sai Subramanyam K's work" 
     style="width: 100%; height: 600px; object-fit: cover; object-position: top;"
+    loading="lazy"
+    decoding="async"
   >
 </div>
 
