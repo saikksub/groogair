@@ -22,7 +22,9 @@ export default defineConfig({
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
+      { icon: 'github', link: 'https://github.com/saikksub' },
+      { icon: 'linkedin', link: 'https://www.linkedin.com/in/saikksub' },
+      { icon: 'x', link: 'https://www.x.com/saikksub' }
     ]
   }
 })
