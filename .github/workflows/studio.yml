@@ -55,6 +55,8 @@ jobs:
 
       - name: Build
         run: ${{ steps.pkgman.outputs.package_manager }} run docs:build
+        env:
+          BASE_URL: /${{ github.event.repository.name }}/
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
