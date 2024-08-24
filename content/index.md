@@ -1,3 +1,0 @@
-# Groogair
-
-## Hello World
