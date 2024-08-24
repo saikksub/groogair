@@ -33,10 +33,31 @@ next: false
 
   <div style="display: flex; justify-content: center; gap: 20px; margin-top: 20px;">
     <a href="/about-me" style="text-decoration: none;">
-      <button style="padding: 10px 20px; font-size: 16px; background-color: #0E71EB; color: white; border: none; border-radius: 5px; cursor: pointer; box-shadow: 0 2px 4px rgba(14, 113, 235, 0.3);">More about me</button>
+      <button style="
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #0E71EB;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        box-shadow: 0 2px 4px rgba(14, 113, 235, 0.3);
+      ">
+        More about me
+      </button>
     </a>
-    <a href="/contact" style="text-decoration: none;">
-      <button style="padding: 10px 20px; font-size: 16px; background-color: transparent; color: var(--vp-c-text-1); border: 1px solid var(--vp-c-text-1); border-radius: 5px; cursor: pointer;">Contact</button>
+    <a href="mailto:saikksub@gmail.com" style="text-decoration: none;">
+      <button style="
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: transparent;
+        color: var(--vp-c-text-1);
+        border: 1px solid var(--vp-c-text-1);
+        border-radius: 5px;
+        cursor: pointer;
+      ">
+        Contact
+      </button>
     </a>
   </div>
 
