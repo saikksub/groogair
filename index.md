@@ -64,7 +64,7 @@ next: false
   <div
     style="
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsive grid */
       gap: 20px;
       margin-top: 60px;
     "
