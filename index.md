@@ -61,6 +61,18 @@ next: false
     </a>
   </div>
 
+  <div class="testimonial-container">
+    <div class="testimonial-content">
+      <div class="quote-mark">&#8220;</div>
+      <p class="testimonial-text">
+        He is incredible -- diligent, intelligent, great communicator and creative. We are very lucky to work with him
+      </p>
+      <p class="testimonial-author">
+        Dan Johnson, CEO @ JurorSearch LLC, Chicago, IL
+      </p>
+    </div>
+  </div>
+
   <div
     style="
       display: grid;
@@ -138,3 +150,14 @@ next: false
     </div>
   </div>
 </div>
+
+<style>
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-270px * 5));
+    }
+  }
+</style>
