@@ -34,3 +34,33 @@
   font-size: 14px;
   font-weight: bold;
 }
+
+.article-card {
+  background-color: var(--vp-c-bg-soft);
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.article-title {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: var(--vp-c-text-1);
+}
+
+.article-excerpt {
+  font-size: 1rem;
+  color: var(--vp-c-text-2);
+  margin-bottom: 15px;
+}
+
+.article-meta {
+  font-size: 0.9rem;
+  color: var(--vp-c-text-3);
+  margin-bottom: 15px;
+}
+
+.article-date {
+  margin-right: 15px;
+}

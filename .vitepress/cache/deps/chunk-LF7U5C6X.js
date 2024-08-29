@@ -34,9 +34,9 @@ import {
   version,
   watch,
   watchEffect
-} from "./chunk-EAKM2Q5U.js";
+} from "./chunk-45KCXATN.js";
 
-// node_modules/.pnpm/vitepress@1.3.3_@algolia+client-search@5.1.1_search-insights@2.17.0/node_modules/vitepress/lib/vue-demi.mjs
+// node_modules/vitepress/lib/vue-demi.mjs
 var isVue2 = false;
 var isVue3 = true;
 function set(target, key, val) {
@@ -56,7 +56,7 @@ function del(target, key) {
   delete target[key];
 }
 
-// node_modules/.pnpm/@vueuse+shared@11.0.1_vue@3.4.38/node_modules/@vueuse/shared/index.mjs
+// node_modules/@vueuse/shared/index.mjs
 function computedEager(fn, options) {
   var _a;
   const result = shallowRef();
@@ -189,7 +189,7 @@ function createSharedComposable(composable) {
   };
   return (...args) => {
     subscribers += 1;
-    if (!state) {
+    if (!scope) {
       scope = effectScope(true);
       state = scope.run(() => composable(...args));
     }
@@ -1559,7 +1559,7 @@ function whenever(source, cb, options) {
   return stop;
 }
 
-// node_modules/.pnpm/@vueuse+core@11.0.1_vue@3.4.38/node_modules/@vueuse/core/index.mjs
+// node_modules/@vueuse/core/index.mjs
 function computedAsync(evaluationCallback, initialState, optionsOrRef) {
   let options;
   if (isRef(optionsOrRef)) {
@@ -2996,20 +2996,21 @@ function usePermission(permissionDesc, options = {}) {
   const permissionStatus = shallowRef();
   const desc = typeof permissionDesc === "string" ? { name: permissionDesc } : permissionDesc;
   const state = shallowRef();
-  const onChange = () => {
-    if (permissionStatus.value)
-      state.value = permissionStatus.value.state;
+  const update = () => {
+    var _a, _b;
+    state.value = (_b = (_a = permissionStatus.value) == null ? void 0 : _a.state) != null ? _b : "prompt";
   };
-  useEventListener(permissionStatus, "change", onChange);
+  useEventListener(permissionStatus, "change", update);
   const query = createSingletonPromise(async () => {
     if (!isSupported.value)
       return;
     if (!permissionStatus.value) {
       try {
         permissionStatus.value = await navigator.permissions.query(desc);
-        onChange();
       } catch (e) {
-        state.value = "prompt";
+        permissionStatus.value = void 0;
+      } finally {
+        update();
       }
     }
     if (controls)
@@ -3478,8 +3479,8 @@ function useCssVar(prop, target, options = {}) {
   watch(
     [elRef, () => toValue(prop)],
     (_, old) => {
-      if (old[0] && old[1] && window2)
-        window2.getComputedStyle(old[0]).removeProperty(old[1]);
+      if (old[0] && old[1])
+        old[0].style.removeProperty(old[1]);
       updateCssVar();
     },
     { immediate: true }
@@ -4063,14 +4064,16 @@ function useDropZone(target, options = {}) {
       event.preventDefault();
       counter += 1;
       isOverDropZone.value = true;
-      (_b = _options.onEnter) == null ? void 0 : _b.call(_options, getFiles(event), event);
+      const files2 = getFiles(event);
+      (_b = _options.onEnter) == null ? void 0 : _b.call(_options, files2, event);
     });
     useEventListener(target, "dragover", (event) => {
       var _a;
       if (!isDataTypeIncluded)
         return;
       event.preventDefault();
-      (_a = _options.onOver) == null ? void 0 : _a.call(_options, getFiles(event), event);
+      const files2 = getFiles(event);
+      (_a = _options.onOver) == null ? void 0 : _a.call(_options, files2, event);
     });
     useEventListener(target, "dragleave", (event) => {
       var _a;
@@ -4080,14 +4083,16 @@ function useDropZone(target, options = {}) {
       counter -= 1;
       if (counter === 0)
         isOverDropZone.value = false;
-      (_a = _options.onLeave) == null ? void 0 : _a.call(_options, getFiles(event), event);
+      const files2 = getFiles(event);
+      (_a = _options.onLeave) == null ? void 0 : _a.call(_options, files2, event);
     });
     useEventListener(target, "drop", (event) => {
       var _a;
       event.preventDefault();
       counter = 0;
       isOverDropZone.value = false;
-      (_a = _options.onDrop) == null ? void 0 : _a.call(_options, getFiles(event), event);
+      const files2 = getFiles(event);
+      (_a = _options.onDrop) == null ? void 0 : _a.call(_options, files2, event);
     });
   }
   return {
@@ -8643,6 +8648,7 @@ function useWebSocket(url, options = {}) {
     status.value = "CONNECTING";
     ws.onopen = () => {
       status.value = "OPEN";
+      retried = 0;
       onConnected == null ? void 0 : onConnected(ws);
       heartbeatResume == null ? void 0 : heartbeatResume();
       _sendBuffer();
@@ -8650,19 +8656,20 @@ function useWebSocket(url, options = {}) {
     ws.onclose = (ev) => {
       status.value = "CLOSED";
       onDisconnected == null ? void 0 : onDisconnected(ws, ev);
-      if (!explicitlyClosed && options.autoReconnect) {
+      if (!explicitlyClosed && options.autoReconnect && ws === wsRef.value) {
         const {
           retries = -1,
           delay = 1e3,
           onFailed
         } = resolveNestedOptions(options.autoReconnect);
-        retried += 1;
-        if (typeof retries === "number" && (retries < 0 || retried < retries))
+        if (typeof retries === "number" && (retries < 0 || retried < retries)) {
+          retried += 1;
           setTimeout(_init, delay);
-        else if (typeof retries === "function" && retries())
+        } else if (typeof retries === "function" && retries()) {
           setTimeout(_init, delay);
-        else
+        } else {
           onFailed == null ? void 0 : onFailed();
+        }
       }
     };
     ws.onerror = (e) => {
@@ -9255,4 +9262,4 @@ vitepress/lib/vue-demi.mjs:
    * @license MIT
    *)
 */
-//# sourceMappingURL=chunk-VLVAH4KV.js.map
+//# sourceMappingURL=chunk-LF7U5C6X.js.map

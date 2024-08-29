@@ -11,18 +11,36 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: 'Home', link: '/' },
+      { text: 'Articles', link: '/articles' },
       { text: 'About Me', link: '/about-me' }
     ],
 
-    sidebar: [
-      {
-        text: 'Examples',
-        items: [
-          { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' }
-        ]
-      }
-    ],
+    sidebar: {
+      '/articles/': [
+        {
+          text: 'All articles',
+          link: '/articles'
+        },
+        {
+          text: 'Featured Articles',
+          items: [
+            { text: 'Sample Article', link: '/articles/sample-article' },
+            { text: 'Another Article', link: '/articles/another-article' },
+            // Add more articles as needed
+          ]
+        },
+        {
+          text: 'Categories',
+          items: [
+            { text: 'Vue/Nuxt', link: '/articles/category/technology' },
+            { text: 'Rust', link: '/articles/category/technology' },
+            { text: 'Freelancing', link: '/articles/category/freelancing' },
+            // Add more categories as needed
+          ]
+        }
+      ],
+      // Define other sidebars for different sections if needed
+    },
 
     socialLinks: [
       { icon: 'github', link: 'https://github.com/saikksub' },
